@@ -18,7 +18,7 @@ const FavoritesList = ({ items }) => {
         <FavoritesListStyled>
             <StyleTitle text={'즐겨찾기 리스트'} />
             {items.map((item) => (
-                <PlanCard key={item.id} item={item} />
+                <PlanCard key={item.id} id={item.id} item={item} />
             ))}
         </FavoritesListStyled>
     );

@@ -10,11 +10,26 @@ const PlanCardListStyled = styled.div`
     height: 250px;
 `;
 const PlanCardList = ({ items }) => {
+    const moveCard = (id, toIndex) => {
+        console.log(id, toIndex);
+    };
+    const findCard = (id) => {
+        const findCardIndex = items.findIndex((item) => item.id === id);
+        return {
+            findCardIndex,
+        };
+    };
     return (
         <PlanCardListStyled>
             <StyleTitle text={'플랜카드 리스트'} />
             {items.map((item) => (
-                <PlanCard key={item.id} item={item} />
+                <PlanCard
+                    key={item.id}
+                    id={item.id}
+                    item={item}
+                    moveCard={moveCard}
+                    findCard={findCard}
+                />
             ))}
         </PlanCardListStyled>
     );
