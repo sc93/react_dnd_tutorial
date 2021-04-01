@@ -13,12 +13,17 @@ const FavoritesListStyled = styled.div`
     bottom: 0;
     width: 1080px;
 `;
-const FavoritesList = ({ items }) => {
+const FavoritesList = ({ items, handleSelectCard }) => {
     return (
         <FavoritesListStyled>
             <StyleTitle text={'즐겨찾기 리스트'} />
             {items.map((item) => (
-                <PlanCard key={item.id} id={item.id} item={item} />
+                <PlanCard
+                    key={item.id}
+                    id={item.id}
+                    item={item}
+                    handleSelectCard={handleSelectCard}
+                />
             ))}
         </FavoritesListStyled>
     );

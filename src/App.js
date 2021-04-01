@@ -38,10 +38,34 @@ const state = {
     ],
 };
 const App = () => {
-    const [data, setData] = useState(state);
+    const [plan, setPlan] = useState(state.plan);
+    const [favor, setFavor] = useState(state.favor);
+    const [selectCard, setSelectCard] = useState(null);
+
+    const handleSelectCard = (card) => {
+        setSelectCard(card);
+    };
+    // move = 옮길곳
+    // select = 선택한 것
+    const handleMoveCard = (moveCard, selectCard) => {
+        let tmpPlan = [...plan];
+        //삭제하고
+        tmpPlan = tmpPlan.map((p1) =>
+            p1.filter((p2) => p2.id !== selectCard.id),
+        );
+        console.log(tmpPlan);
+        // tmpPlan[y].splice(x, 0, card);
+        setPlan(tmpPlan);
+        console.log(plan);
+    };
     return (
         <AppStyled>
-            <Plan data={data} />
+            <Plan
+                plan={plan}
+                favor={favor}
+                handleMoveCard={handleMoveCard}
+                handleSelectCard={handleSelectCard}
+            />
         </AppStyled>
     );
 };

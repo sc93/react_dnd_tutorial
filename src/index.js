@@ -4,16 +4,13 @@ import './index.css';
 import App from './App';
 import Board from './Board';
 import { observe } from './testComponents/Game';
-// ReactDOM.render(
-//     <Board knightPosition={[7, 4]} />,
-//     document.getElementById('root'),
+ReactDOM.render(<App />, document.getElementById('root'));
+// observe((knightPosition) =>
+//     ReactDOM.render(
+//         <Board knightPosition={knightPosition} />,
+//         document.getElementById('root'),
+//     ),
 // );
-observe((knightPosition) =>
-    ReactDOM.render(
-        <Board knightPosition={knightPosition} />,
-        document.getElementById('root'),
-    ),
-);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

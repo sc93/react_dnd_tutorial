@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import PlanCardList from './PlanCardList';
 import FavoritesList from './FavoritesList';
 import StyleTitle from './StyleTitle';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const PlanStyled = styled.div`
     display: flex;
@@ -14,18 +16,28 @@ const PlanCardListWrapper = styled.div`
     height: 760px;
     overflow-y: scroll;
 `;
-const Plan = ({ data }) => {
-    const { plan, favor } = data;
+const Plan = ({ plan, favor, handleMoveCard, handleSelectCard }) => {
     return (
-        <PlanStyled>
-            <PlanCardListWrapper>
-                <StyleTitle text={'플랜'} />
-                {plan.map((items, idx) => (
-                    <PlanCardList key={`plan${idx}`} items={items} />
-                ))}
-            </PlanCardListWrapper>
-            <FavoritesList items={favor} />
-        </PlanStyled>
+        <DndProvider backend={HTML5Backend}>
+            <PlanStyled>
+                <PlanCardListWrapper>
+                    <StyleTitle text={'플랜'} />
+                    {plan.map((items, idx) => (
+                        <PlanCardList
+                            key={`plan${idx}`}
+                            items={items}
+                            y={idx}
+                            handleMoveCard={handleMoveCard}
+                            handleSelectCard={handleSelectCard}
+                        />
+                    ))}
+                </PlanCardListWrapper>
+                <FavoritesList
+                    items={favor}
+                    handleSelectCard={handleSelectCard}
+                />
+            </PlanStyled>
+        </DndProvider>
     );
 };
 
